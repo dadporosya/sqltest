@@ -12,7 +12,6 @@ class DB_Manager:
         self.database = database
         self.con = sqlite3.connect(self.database, check_same_thread=False)
         self.cur = self.con.cursor()
-        # self.con.execute("PRAGMA foreign_keys = ON;")
         self.create_tables()
         self.default_insert()
 
