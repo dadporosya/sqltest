@@ -68,7 +68,7 @@ def info(message):
 Можете ввести название созданого проекта, чтобы посмотреть информацию о нем""")
     
 
-@bot.message_handler(commands=['new_project'])
+@bot.message_handler(commands=['new_project']) #используй для добавления нового проекта
 def addtask_command(message):
     bot.send_message(message.chat.id, "Введите название проекта:")
     bot.register_next_step_handler(message, name_project)
@@ -101,7 +101,7 @@ def callback_project(message, data, statuses):
     bot.send_message(message.chat.id, "Проект сохранен")
 
 
-@bot.message_handler(commands=['skills'])
+@bot.message_handler(commands=['skills']) #чтобы добавить навык к проекту
 def skill_handler(message):
     user_id = message.from_user.id
     projects = manager.get_projects(user_id)
@@ -142,7 +142,7 @@ def set_skill(message, project_name, skills):
     bot.send_message(message.chat.id, f'Навык {skill} добавлен проекту {project_name}')
 
 
-@bot.message_handler(commands=['projects'])
+@bot.message_handler(commands=['projects']) #чтобы посмотреть проект
 def get_projects(message):
     user_id = message.from_user.id
     projects = manager.get_projects(user_id)
@@ -158,7 +158,7 @@ def callback_query(call):
     info_project(call.message, call.from_user.id, project_name)
 
 
-@bot.message_handler(commands=['delete'])
+@bot.message_handler(commands=['delete']) #чтобы удалить проект
 def delete_handler(message):
     user_id = message.from_user.id
     projects = manager.get_projects(user_id)
@@ -243,7 +243,7 @@ def update_project_step_4(message, project_name, attribute):
     bot.send_message(message.chat.id, "Готово! Обновления внесены!)")
 
 
-@bot.message_handler(func=lambda message: True)
+@bot.message_handler(func=lambda message: True) #чтобы обновить проект
 def text_handler(message):
     user_id = message.from_user.id
     projects =[ x[2] for x in manager.get_projects(user_id)]
